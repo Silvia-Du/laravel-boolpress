@@ -1953,7 +1953,22 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'BlogComp'
+  name: 'BlogComp',
+  data: function data() {
+    return {
+      postApiUrl: 'http://127.0.0.1:8000/api/posts'
+    };
+  },
+  methods: {
+    getPosts: function getPosts() {
+      axios.get(this.postApiUrl).then(function (response) {
+        console.log(response.data);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getPosts();
+  }
 });
 
 /***/ }),
@@ -2108,7 +2123,13 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("h1", [_vm._v("BlogComp")])]);
+  return _c("div", [_c("div", {
+    staticClass: "container pt-5 text-center"
+  }, [_c("h1", {
+    staticClass: "mb-4"
+  }, [_vm._v("Funny Development")]), _vm._v(" "), _c("p", [_vm._v("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus eum nisi commodi officia aperiam? Distinctio, delectus labore. Voluptates assumenda culpa, iure eos reiciendis suscipit modi in obcaecati nulla, accusamus, quisquam adipisci recusandae at sequi? Fugiat, tempore commodi. Aliquid maiores ipsum, rerum soluta deserunt et ullam vel aliquam voluptatibus vero velit cupiditate eius, aspernatur sint tenetur ducimus. Rem vero voluptates beatae saepe quod facilis minima quia, culpa possimus esse repellat maxime doloribus placeat ipsam. Sint nostrum laboriosam dignissimos ut omnis sunt odio expedita esse inventore! Neque, vitae porro modi libero fugit nemo dolores provident, ex facere eligendi magnam dolorem at consequatur.")]), _vm._v(" "), _c("div", {
+    staticClass: "blog-section"
+  })])]);
 }];
 render._withStripped = true;
 
@@ -2317,7 +2338,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "header[data-v-494e1ffe] {\n  height: 70px;\n  background-color: whitesmoke;\n}\nheader ul[data-v-494e1ffe] {\n  list-style: none;\n}\nheader ul li a[data-v-494e1ffe] {\n  margin: 0 20px;\n  color: rgb(36, 36, 36);\n  font-weight: bold;\n  font-size: 1.2rem;\n}\nheader ul li a.active[data-v-494e1ffe], header ul li a[data-v-494e1ffe]:hover {\n  color: rgb(2, 11, 134);\n  text-decoration: none;\n}", ""]);
+exports.push([module.i, "header[data-v-494e1ffe] {\n  height: 70px;\n  background-color: whitesmoke;\n}\nheader ul[data-v-494e1ffe] {\n  list-style: none;\n}\nheader ul li a[data-v-494e1ffe] {\n  margin: 0 20px;\n  color: rgb(36, 36, 36);\n  font-weight: bold;\n  font-size: 1.2rem;\n}\nheader ul li a.active[data-v-494e1ffe], header ul li a[data-v-494e1ffe]:hover {\n  color: rgb(58, 66, 177);\n  text-decoration: none;\n}", ""]);
 
 // exports
 
@@ -18488,6 +18509,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
+  linkExactActiveClass: 'active',
   routes: [{
     path: '/',
     name: 'home',

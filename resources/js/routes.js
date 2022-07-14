@@ -19,6 +19,7 @@ import BlogComp from './components/pages/BlogComp';
 //creo il router
 const router = new VueRouter({
     mode: 'history',
+    linkExactActiveClass :'active',
 
     routes: [
         {

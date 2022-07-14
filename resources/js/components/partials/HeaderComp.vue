@@ -36,7 +36,7 @@ export default {
                     font-weight: bold;
                     font-size: 1.2rem;
                     &.active, &:hover{
-                        color: rgb(2, 11, 134);
+                        color: rgb(58, 66, 177);
                         text-decoration: none;
                     }
 
