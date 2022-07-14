@@ -2361,7 +2361,7 @@ var render = function render() {
     staticClass: "box p-2"
   }, [_c("div", {
     staticClass: "img-box"
-  }, [_vm._v("\n            img\n        ")]), _vm._v(" "), _c("h4", {
+  }, [_vm._v("\n            img " + _vm._s(_vm.postItem.title) + "\n        ")]), _vm._v(" "), _c("h4", {
     staticClass: "mb-3"
   }, [_vm._v(_vm._s(_vm.postItem.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.postItem.content))]), _vm._v(" "), _vm.postItem.tags.length > 0 ? _c("div", {
     staticClass: "tags d-flex flex-column align-items-end"
@@ -2430,7 +2430,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".col-4 .box[data-v-4061d4de] {\n  background-color: whitesmoke;\n  border-radius: 5px;\n  position: relative;\n}\n.col-4 .box .img-box[data-v-4061d4de] {\n  width: 100%;\n  height: 200px;\n  border: dashed;\n}\n.col-4 .box .tags[data-v-4061d4de] {\n  position: absolute;\n  right: 11px;\n  top: 10px;\n}", ""]);
+exports.push([module.i, ".col-4 .box[data-v-4061d4de] {\n  background-color: whitesmoke;\n  border-radius: 5px;\n  position: relative;\n}\n.col-4 .box .img-box[data-v-4061d4de] {\n  width: 100%;\n  height: 200px;\n  border: dashed;\n  border-color: cadetblue;\n  color: cadetblue;\n}\n.col-4 .box .tags[data-v-4061d4de] {\n  position: absolute;\n  right: 11px;\n  top: 10px;\n}", ""]);
 
 // exports
 

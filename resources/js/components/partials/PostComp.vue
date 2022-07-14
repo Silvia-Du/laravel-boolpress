@@ -3,7 +3,7 @@
     <div class="box p-2">
 
         <div class="img-box">
-            img
+            img {{ postItem.title }}
         </div>
         <h4 class="mb-3">{{ postItem.title }}</h4>
         <p>{{ postItem.content }}</p>
@@ -36,6 +36,8 @@ export default {
             width: 100%;
             height: 200px;
             border: dashed;
+            border-color: cadetblue;
+            color: cadetblue;
         }
         .tags{
             position: absolute;
