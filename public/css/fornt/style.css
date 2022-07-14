@@ -9262,7 +9262,11 @@ h3 {
   }
 }
 body {
-  background-color: cadetblue;
+  background-color: rgb(231, 222, 222);
+}
+
+main {
+  height: calc(100vh - 140px);
 }
 
 .debug {
