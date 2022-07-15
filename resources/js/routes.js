@@ -15,6 +15,7 @@ import AboutComp from './components/pages/AboutComp';
 import CoursesComp from './components/pages/CoursesComp';
 import ContactsComp from './components/pages/ContactsComp';
 import BlogComp from './components/pages/BlogComp';
+import FullPostComp from './components/pages/FullPostComp';
 
 //creo il router
 const router = new VueRouter({
@@ -46,6 +47,11 @@ const router = new VueRouter({
             path: '/blog',
             name: 'blog',
             component: BlogComp,
+        },
+        {
+            path: '/post/ :slug',
+            name: 'full-post',
+            component: FullPostComp,
         },
     ]
 });

@@ -1,25 +1,28 @@
 <template>
-  <div class="col-4 mb-3 px-2">
-    <div class="box p-2 debug">
+    <div class="col-4 mb-3 px-2">
+        <router-link :to="{name: 'full-post', params:{slug: postItem.slug}}">
+            <div class="box p-2 debug">
 
-        <div class="img-box mb-3">
+                <div class="img-box mb-3">
 
-        </div>
+                </div>
 
 
-            <h5 class="mb-3 mx-2">{{ shortifyContent(postItem.title) }}</h5>
-            <p class="mb-3">{{ shortifyContent(postItem.content) }}</p>
+                    <h5 class="mb-3 mx-2">{{ shortifyContent(postItem.title) }}</h5>
+                    <p class="mb-3">{{ shortifyContent(postItem.content) }}</p>
 
-            <p class="update mb-0">Last update:{{ beautifyDate }}</p>
-            <!-- tags in absolute -->
-            <div v-if="postItem.tags.length > 0" class="tags d-flex flex-column align-items-end">
-                <h6 v-for="(tag, index) in postItem.tags" :key="`tag${index}`">
-                    <span class="badge badge-info">{{ tag.name }}</span>
-                </h6>
+                    <p class="update mb-0">Last update:{{ beautifyDate }}</p>
+                    <!-- tags in absolute -->
+                    <div v-if="postItem.tags.length > 0" class="tags d-flex flex-column align-items-end">
+                        <h6 v-for="(tag, index) in postItem.tags" :key="`tag${index}`">
+                            <span class="badge badge-info">{{ tag.name }}</span>
+                        </h6>
+                    </div>
+
             </div>
-
-    </div>
+        </router-link>
   </div>
+
 </template>
 
 <script>
@@ -64,6 +67,10 @@ export default {
 <style lang="scss" scoped>
 
 .col-4{
+    a{
+        text-decoration: none;
+        color: rgb(34, 34, 34);
+    }
     .box{
         background-color: whitesmoke;
         border-radius: 5px;
