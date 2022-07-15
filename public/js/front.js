@@ -1964,27 +1964,29 @@ __webpack_require__.r(__webpack_exports__);
       postApiUrl: 'http://127.0.0.1:8000/api/posts',
       posts: null,
       pagination: {
-        current_page: null,
-        last_page: null
+        current_p: null,
+        last_p: null
       }
     };
   },
   methods: {
-    getPosts: function getPosts() {
+    getPosts: function getPosts(page) {
       var _this = this;
 
-      axios.get(this.postApiUrl).then(function (response) {
-        _this.posts = response.data.data;
+      console.log(page);
+      axios.get(this.postApiUrl + "?page=" + page).then(function (response) {
+        _this.posts = response.data.data; // console.log(response.data);
+
         _this.pagination = {
-          current_page: response.data.current_page,
-          last_page: response.data.last_page
+          current_p: response.data.current_page,
+          last_p: response.data.last_page
         };
         console.log(_this.pagination);
       });
     }
   },
   mounted: function mounted() {
-    this.getPosts();
+    this.getPosts(1);
   }
 });
 
@@ -2152,7 +2154,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", [_c("div", {
-    staticClass: "container pt-5 text-center"
+    staticClass: "container py-5 text-center"
   }, [_c("h1", {
     staticClass: "mb-4"
   }, [_vm._v("Funny Development")]), _vm._v(" "), _c("p", {
@@ -2168,7 +2170,43 @@ var render = function render() {
         postItem: post
       }
     });
-  })], 2)])]);
+  })], 2), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-dark",
+    attrs: {
+      type: "button",
+      disabled: _vm.pagination.current_p == 1
+    },
+    on: {
+      click: function click($event) {
+        return _vm.getPosts(_vm.pagination.current_p - 1);
+      }
+    }
+  }, [_vm._v("Back< ")]), _vm._v(" "), _vm._l(_vm.pagination.last_p, function (i) {
+    return _c("button", {
+      key: "pag".concat(i),
+      staticClass: "btn btn-dark mr-1",
+      attrs: {
+        type: "button",
+        disabled: _vm.pagination.current_p == i
+      },
+      on: {
+        click: function click($event) {
+          return _vm.getPosts(i);
+        }
+      }
+    }, [_vm._v(_vm._s(i))]);
+  }), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-dark",
+    attrs: {
+      type: "button",
+      disabled: _vm.pagination.current_p == _vm.pagination.last_p
+    },
+    on: {
+      click: function click($event) {
+        return _vm.getPosts(_vm.pagination.current_p + 1);
+      }
+    }
+  }, [_vm._v("Next>>")])], 2)]);
 };
 
 var staticRenderFns = [];
