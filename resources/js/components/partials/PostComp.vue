@@ -7,6 +7,7 @@
         </div>
         <h4 class="mb-3">{{ postItem.title }}</h4>
         <p>{{ postItem.content }}</p>
+        <p class="update">Last update:{{ beautifyDate }}</p>
         <div v-if="postItem.tags.length > 0" class="tags d-flex flex-column align-items-end">
             <h6 v-for="(tag, index) in postItem.tags" :key="`tag${index}`"
             ><span class="badge badge-info">{{ tag.name }}</span></h6>
@@ -21,6 +22,24 @@ export default {
 
     props: {
         postItem: Object,
+    },
+
+    computed:{
+
+        beautifyDate(){
+            const date = new Date(this.postItem.updated_at);
+            let day = date.getDate();
+            let month = date.getMonth();
+            const year = date.getFullYear();
+
+            if(day < 10){
+                day = '0'+day;
+            }
+            if(month < 10){
+                month = '0'+month;
+            }
+            return `${day}/${month}/${year}`;
+        }
     }
 }
 </script>
@@ -44,7 +63,15 @@ export default {
             right: 11px;
             top: 10px;
         }
+        .update{
+            position: absolute;
+            bottom: 0;
+            left: 10;
+            font-size: 0.8rem;
+            color: cadetblue;
+        }
     }
+
 }
 
 </style>
