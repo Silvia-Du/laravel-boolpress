@@ -1962,7 +1962,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       postApiUrl: 'http://127.0.0.1:8000/api/posts',
-      posts: null
+      posts: null,
+      pagination: {
+        current_page: null,
+        last_page: null
+      }
     };
   },
   methods: {
@@ -1970,8 +1974,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(this.postApiUrl).then(function (response) {
-        _this.posts = response.data;
-        console.log(_this.posts);
+        _this.posts = response.data.data;
+        _this.pagination = {
+          current_page: response.data.current_page,
+          last_page: response.data.last_page
+        };
+        console.log(_this.pagination);
       });
     }
   },

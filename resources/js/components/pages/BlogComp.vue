@@ -33,6 +33,10 @@ export default {
         return{
             postApiUrl: 'http://127.0.0.1:8000/api/posts',
             posts: null,
+            pagination: {
+                current_page: null,
+                last_page: null,
+            }
         }
     },
 
@@ -41,8 +45,12 @@ export default {
 
             axios.get(this.postApiUrl)
             .then(response =>{
-                this.posts = response.data;
-                console.log(this.posts);
+                this.posts = response.data.data;
+                this.pagination ={
+                    current_page : response.data.current_page,
+                    last_page : response.data.last_page,
+                }
+                console.log(this.pagination);
             })
         }
     },
