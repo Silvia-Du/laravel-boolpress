@@ -2100,6 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
     postItem: Object
   },
   computed: {
+    //formatter per data
     beautifyDate: function beautifyDate() {
       var date = new Date(this.postItem.updated_at);
       var day = date.getDate();
@@ -2115,6 +2116,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return "".concat(day, "/").concat(month, "/").concat(year);
+    }
+  },
+  methods: {
+    //porzionatore di testo
+    shortifyContent: function shortifyContent(text) {
+      return text.substring(1, 40) + '...';
     }
   }
 });
@@ -2475,13 +2482,15 @@ var render = function render() {
   return _c("div", {
     staticClass: "col-4 mb-3 px-2"
   }, [_c("div", {
-    staticClass: "box p-2"
+    staticClass: "box p-2 debug"
   }, [_c("div", {
-    staticClass: "img-box"
-  }, [_vm._v("\n            img " + _vm._s(_vm.postItem.title) + "\n        ")]), _vm._v(" "), _c("h4", {
+    staticClass: "img-box mb-3"
+  }), _vm._v(" "), _c("h5", {
+    staticClass: "mb-3 mx-2"
+  }, [_vm._v(_vm._s(_vm.shortifyContent(_vm.postItem.title)))]), _vm._v(" "), _c("p", {
     staticClass: "mb-3"
-  }, [_vm._v(_vm._s(_vm.postItem.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.postItem.content))]), _vm._v(" "), _c("p", {
-    staticClass: "update"
+  }, [_vm._v(_vm._s(_vm.shortifyContent(_vm.postItem.content)))]), _vm._v(" "), _c("p", {
+    staticClass: "update mb-0"
   }, [_vm._v("Last update:" + _vm._s(_vm.beautifyDate))]), _vm._v(" "), _vm.postItem.tags.length > 0 ? _c("div", {
     staticClass: "tags d-flex flex-column align-items-end"
   }, _vm._l(_vm.postItem.tags, function (tag, index) {
@@ -2568,7 +2577,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".col-4 .box[data-v-4061d4de] {\n  background-color: whitesmoke;\n  border-radius: 5px;\n  position: relative;\n}\n.col-4 .box .img-box[data-v-4061d4de] {\n  width: 100%;\n  height: 200px;\n  border: dashed;\n  border-color: cadetblue;\n  color: cadetblue;\n}\n.col-4 .box .tags[data-v-4061d4de] {\n  position: absolute;\n  right: 11px;\n  top: 10px;\n}\n.col-4 .box .update[data-v-4061d4de] {\n  position: absolute;\n  bottom: 0;\n  left: 10;\n  font-size: 0.8rem;\n  color: cadetblue;\n}", ""]);
+exports.push([module.i, ".col-4 .box[data-v-4061d4de] {\n  background-color: whitesmoke;\n  border-radius: 5px;\n  position: relative;\n}\n.col-4 .box .img-box[data-v-4061d4de] {\n  width: 100%;\n  height: 200px;\n  border: dashed;\n  background-color: rgba(46, 42, 42, 0.288);\n  border-color: cadetblue;\n  color: cadetblue;\n}\n.col-4 .box .tags[data-v-4061d4de] {\n  position: absolute;\n  right: 11px;\n  top: 10px;\n}\n.col-4 .box .update[data-v-4061d4de] {\n  position: absolute;\n  bottom: 5px;\n  left: 10px;\n  font-size: 0.8rem;\n  color: cadetblue;\n}", ""]);
 
 // exports
 

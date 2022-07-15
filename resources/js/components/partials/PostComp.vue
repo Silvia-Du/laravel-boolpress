@@ -1,17 +1,23 @@
 <template>
   <div class="col-4 mb-3 px-2">
-    <div class="box p-2">
+    <div class="box p-2 debug">
 
-        <div class="img-box">
-            img {{ postItem.title }}
+        <div class="img-box mb-3">
+
         </div>
-        <h4 class="mb-3">{{ postItem.title }}</h4>
-        <p>{{ postItem.content }}</p>
-        <p class="update">Last update:{{ beautifyDate }}</p>
-        <div v-if="postItem.tags.length > 0" class="tags d-flex flex-column align-items-end">
-            <h6 v-for="(tag, index) in postItem.tags" :key="`tag${index}`"
-            ><span class="badge badge-info">{{ tag.name }}</span></h6>
-        </div>
+
+
+            <h5 class="mb-3 mx-2">{{ shortifyContent(postItem.title) }}</h5>
+            <p class="mb-3">{{ shortifyContent(postItem.content) }}</p>
+
+            <p class="update mb-0">Last update:{{ beautifyDate }}</p>
+            <!-- tags in absolute -->
+            <div v-if="postItem.tags.length > 0" class="tags d-flex flex-column align-items-end">
+                <h6 v-for="(tag, index) in postItem.tags" :key="`tag${index}`">
+                    <span class="badge badge-info">{{ tag.name }}</span>
+                </h6>
+            </div>
+
     </div>
   </div>
 </template>
@@ -26,6 +32,7 @@ export default {
 
     computed:{
 
+        //formatter per data
         beautifyDate(){
             const date = new Date(this.postItem.updated_at);
             let day = date.getDate();
@@ -39,8 +46,18 @@ export default {
                 month = '0'+month;
             }
             return `${day}/${month}/${year}`;
+        },
+
+
+    },
+
+    methods: {
+
+        //porzionatore di testo
+        shortifyContent(text){
+            return text.substring(1, 40)+ '...';
         }
-    }
+    },
 }
 </script>
 
@@ -55,6 +72,7 @@ export default {
             width: 100%;
             height: 200px;
             border: dashed;
+            background-color: rgba(46, 42, 42, 0.288);
             border-color: cadetblue;
             color: cadetblue;
         }
@@ -65,8 +83,8 @@ export default {
         }
         .update{
             position: absolute;
-            bottom: 0;
-            left: 10;
+            bottom: 5px;
+            left: 10px;
             font-size: 0.8rem;
             color: cadetblue;
         }
