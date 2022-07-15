@@ -2036,10 +2036,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FullPostComp',
   data: function data() {
-    return _defineProperty({
+    var _ref;
+
+    return _ref = {
       post: null,
       apiUrl: '/api/posts'
-    }, "post", null);
+    }, _defineProperty(_ref, "post", null), _defineProperty(_ref, "categories", null), _defineProperty(_ref, "tags", null), _ref;
   },
   computed: {
     //formatter per data
@@ -2065,13 +2067,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       axios.get(this.apiUrl + '/' + this.$route.params.slug).then(function (response) {
-        _this.post = response.data;
-        console.log(_this.post);
+        _this.post = response.data; // console.log(this.post.tags);
+      });
+    },
+    getCatAndTags: function getCatAndTags() {
+      var _this2 = this;
+
+      axios.get(this.apiUrl + '/get-data').then(function (response) {
+        console.log(response.data);
+        _this2.categories = response.data.categories;
+        _this2.tags = response.data.tags;
       });
     }
   },
   mounted: function mounted() {
     this.getPost();
+    this.getCatAndTags();
   }
 });
 
@@ -2386,7 +2397,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "post"
+    staticClass: "post pb-5"
   }, [_c("div", {
     staticClass: "container-fluid jumbo debug"
   }), _vm._v(" "), _vm.post != null ? _c("div", {
@@ -2394,13 +2405,61 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-8"
-  }, [_c("h3", [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", [_vm._v("---- " + _vm._s(_vm.beautifyDate) + "-----")])]), _vm._v(" "), _c("div", {
-    staticClass: "col-4 debug"
-  })])]) : _vm._e()]);
+    staticClass: "col-8 px-2"
+  }, [_c("h3", [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", [_vm._v("---- " + _vm._s(_vm.beautifyDate) + "-----")]), _vm._v(" "), _c("div", {
+    staticClass: "img debug mb-3"
+  }), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.content))]), _vm._v(" "), _c("h5", [_vm._v("Lorem ipsum dolor sit amet consectetur adipisicing.")]), _vm._v(" "), _c("p", [_vm._v("Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam incidunt ab ex ullam ut quasi odio eum nam ipsa totam.")]), _vm._v(" "), _vm._l(_vm.post.tags, function (tag, index) {
+    return _c("h5", {
+      key: "tag".concat(index),
+      staticClass: "d-inline mr-2 mb-2"
+    }, [_c("span", {
+      staticClass: "badge badge-light"
+    }, [_vm._v(_vm._s(tag.name))])]);
+  }), _vm._v(" "), _c("h5", [_vm._v("#category->" + _vm._s(_vm.post.category.name))])], 2), _vm._v(" "), _c("div", {
+    staticClass: "col-4 px-2"
+  }, [_c("router-link", {
+    attrs: {
+      to: {
+        name: "about"
+      }
+    }
+  }, [_c("div", {
+    staticClass: "about text-center py-3 px-2 mb-3"
+  }, [_c("p", {
+    staticClass: "mb-2"
+  }, [_vm._v("About me")]), _vm._v(" "), _c("div", {
+    staticClass: "img-little debug mb-2"
+  }), _vm._v(" "), _c("p", [_vm._v("Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis voluptates dignissimos, minus maxime id ipsum itaque cupiditate magni earum soluta.")]), _vm._v(" "), _c("h5", [_vm._v("View more")])])]), _vm._v(" "), _c("div", {
+    staticClass: "tags text-center py-3 px-2 mb-3"
+  }, [_c("p", {
+    staticClass: "mb-2"
+  }, [_vm._v("Tags")]), _vm._v(" "), _vm._l(_vm.tags, function (tag) {
+    return _c("span", {
+      key: tag.id,
+      staticClass: "sd_badge text-uppercase m-1"
+    }, [_vm._v(_vm._s(tag.name))]);
+  })], 2), _vm._v(" "), _c("div", {
+    staticClass: "categories text-center py-3 px-2 mb-3"
+  }, [_c("p", {
+    staticClass: "mb-2"
+  }, [_vm._v("Categories")]), _vm._v(" "), _vm._l(_vm.categories, function (category) {
+    return _c("span", {
+      key: category.id,
+      staticClass: "sd_badge text-uppercase m-1"
+    }, [_vm._v(_vm._s(category.name))]);
+  })], 2), _vm._v(" "), _vm._m(0)], 1)])]) : _vm._e()]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "categories text-center py-3 px-2"
+  }, [_c("p", {
+    staticClass: "mb-2"
+  }, [_vm._v("Resta collegato")]), _vm._v("\n\n                    social icons\n\n                ")]);
+}];
 render._withStripped = true;
 
 
@@ -2617,7 +2676,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".jumbo[data-v-43c74dd8] {\n  height: 30vh;\n}", ""]);
+exports.push([module.i, ".jumbo[data-v-43c74dd8] {\n  height: 40vh;\n}\n.img[data-v-43c74dd8] {\n  height: 400px;\n}\n.img-little[data-v-43c74dd8] {\n  height: 150px;\n}\n.tags[data-v-43c74dd8], .categories[data-v-43c74dd8], .about[data-v-43c74dd8] {\n  border: 1px solid gray;\n}\n.tags .sd_badge[data-v-43c74dd8], .categories .sd_badge[data-v-43c74dd8], .about .sd_badge[data-v-43c74dd8] {\n  display: inline-block;\n  padding: 4px 8px;\n  border-radius: 4px;\n  background-color: rgb(231, 216, 216);\n  font-size: 0.8rem;\n  cursor: pointer;\n}\na[data-v-43c74dd8] {\n  color: rgb(36, 36, 36);\n}\na[data-v-43c74dd8]:hover {\n  text-decoration: none;\n}\na .about[data-v-43c74dd8] {\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -19239,7 +19298,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'blog',
     component: _components_pages_BlogComp__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
-    path: '/post/ :slug',
+    path: '/post-completo/:slug',
     name: 'full-post',
     component: _components_pages_FullPostComp__WEBPACK_IMPORTED_MODULE_7__["default"]
   }]

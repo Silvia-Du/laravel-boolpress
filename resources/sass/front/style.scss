@@ -1,13 +1,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import '~@fontsource/convergence/index.css';
+// @import '~@fontsource/battambang/index.css';
 
 
 body{
-    background-color: rgb(231, 222, 222);
+    background-color: rgb(238, 229, 229);
+    // font-family: "Battambang", cursive;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-
-body { font-family: "Battambang", cursive; }
 
 main{
     min-height: calc(100vh - 140px);

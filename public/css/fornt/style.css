@@ -9262,7 +9262,8 @@ h3 {
   }
 }
 body {
-  background-color: rgb(231, 222, 222);
+  background-color: rgb(238, 229, 229);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 main {

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
+use App\Tag;
 
 class PageController extends Controller
 {
@@ -20,4 +22,12 @@ class PageController extends Controller
 
         return response()->json($post);
     }
+
+    public function getCategoryAndTags(){
+        $categories= Category::all();
+        $tags = Tag::all();
+
+        return response()->json(compact('categories', 'tags'));
+    }
+
 }

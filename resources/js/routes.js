@@ -49,7 +49,7 @@ const router = new VueRouter({
             component: BlogComp,
         },
         {
-            path: '/post/ :slug',
+            path: '/post-completo/:slug',
             name: 'full-post',
             component: FullPostComp,
         },
