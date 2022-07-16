@@ -4,7 +4,7 @@
 
     <div v-if="post != null" class="container pt-5 main-content">
         <div class="row">
-            <div class="col-8 px-2">
+            <div v-if="!typePosts" class="col-8 px-2">
 
                 <h3>{{ post.title }}</h3>
                 <p>---- {{ beautifyDate }}-----</p>
@@ -18,10 +18,37 @@
                 </h5>
                 <h5>#category->{{ post.category.name }}</h5>
             </div>
+            <!-- v-else -->
+            <div v-else class="col-8 mb-4 px-0">
+                <p class="back-btn py-2 px-3" @click="typePosts = null">
+                <!-- <i class="fa-solid fa-arrow-left"></i> -->
+                Back to post</p>
+                <h5 class="d-inline ml-5">
+                    {{ type == 'category'? 'Selezione per categoria' : 'Selezione per Tag' }}
+                </h5>
+
+                <div v-for="(post, index) in typePosts" :key="`${index}`"
+                class="preview debug d-flex mb-3">
+                    <div class="img debug d-flex flex-column">img</div>
+                    <!-- post-data -->
+                    <div class="text p-2">
+                        <p class="category">Categoria</p>
+                        <h4 class="title">Titolo post</h4>
+                        <p class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore dignissimos nulla esse debitis ab est? Aliquid, dolorum aliquam numquam beatae facilis </p>
+                        <button type="button" class="btn sd-btn btn-info mb-2">Read More</button>
+                        <p class="date">da/ta/ta</p>
+
+                    </div>
+                </div>
+            </div>
 
             <AsideBarComp @categoryPack="getPostsByType" />
 
         </div>
+
+
+
+
 
     </div>
   </div>
@@ -41,6 +68,8 @@ export default {
         return{
             apiUrl: '/api/posts',
             post: null,
+            type: '',
+            typePosts: null,
 
         }
     },
@@ -74,8 +103,14 @@ export default {
             })
         },
 
-        getPostsByType(object){
-            console.log('sono dentro',object);
+        getPostsByType(object, data){
+            //reset
+            this.type = '';
+            this.typePosts= null;
+            //valorizzazione
+            this.type = data;
+            this.typePosts = object.posts;
+            // console.log('sono dentro',this.typePosts);
         }
 
     },
@@ -96,6 +131,38 @@ export default {
 .img{
     height: 400px;
 }
+
+.back-btn{
+    font-size: 0.9rem;
+    display: inline-block;
+    cursor: pointer;
+    &:hover{
+        color: rgb(48, 48, 48);
+    }
+    border-radius: 50%;
+}
+
+ .preview{
+            box-shadow: 0 0 1px 0px gray;
+            min-height: 240px;
+            background-color: whitesmoke;
+            .img{
+                width: 50%;
+                height: 100%;
+            }
+
+            .category{
+                color: cadetblue;
+                font-size: 0.7rem;
+                font-weight: bolder;
+            }
+            .content{
+                color: gray;
+            }
+            .title{
+                text-transform: uppercase;
+            }
+        }
 
 
 </style>

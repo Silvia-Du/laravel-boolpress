@@ -2041,7 +2041,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       apiUrl: '/api/posts',
-      post: null
+      post: null,
+      type: '',
+      typePosts: null
     };
   },
   computed: {
@@ -2072,8 +2074,13 @@ __webpack_require__.r(__webpack_exports__);
         _this.post = response.data;
       });
     },
-    getPostsByType: function getPostsByType(object) {
-      console.log('sono dentro', object);
+    getPostsByType: function getPostsByType(object, data) {
+      //reset
+      this.type = '';
+      this.typePosts = null; //valorizzazione
+
+      this.type = data;
+      this.typePosts = object.posts; // console.log('sono dentro',this.typePosts);
     }
   },
   mounted: function mounted() {
@@ -2113,8 +2120,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       apiUrl: '/api/posts',
       categories: null,
-      tags: null,
-      selectedType: null
+      tags: null
     };
   },
   methods: {
@@ -2122,7 +2128,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(this.apiUrl + '/get-data').then(function (response) {
-        // console.log(response);
         _this.categories = response.data.categories;
         _this.tags = response.data.tags;
       });
@@ -2134,12 +2139,11 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
 
         if (response.data.category) {
-          // this.selectedType = response.data.category;
-          _this2.$emit('categoryPack', response.data.category);
+          _this2.$emit('categoryPack', response.data.category, 'category');
         }
 
         if (response.data.tag) {
-          _this2.selectedType = response.data.tag;
+          _this2.$emit('categoryPack', response.data.tag, 'tag');
         }
       });
     }
@@ -2454,7 +2458,7 @@ var render = function render() {
     staticClass: "container pt-5 main-content"
   }, [_c("div", {
     staticClass: "row"
-  }, [_c("div", {
+  }, [!_vm.typePosts ? _c("div", {
     staticClass: "col-8 px-2"
   }, [_c("h3", [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", [_vm._v("---- " + _vm._s(_vm.beautifyDate) + "-----")]), _vm._v(" "), _c("div", {
     staticClass: "img debug mb-3"
@@ -2465,14 +2469,52 @@ var render = function render() {
     }, [_c("span", {
       staticClass: "badge badge-light"
     }, [_vm._v(_vm._s(tag.name))])]);
-  }), _vm._v(" "), _c("h5", [_vm._v("#category->" + _vm._s(_vm.post.category.name))])], 2), _vm._v(" "), _c("AsideBarComp", {
+  }), _vm._v(" "), _c("h5", [_vm._v("#category->" + _vm._s(_vm.post.category.name))])], 2) : _c("div", {
+    staticClass: "col-8 mb-4 px-0"
+  }, [_c("p", {
+    staticClass: "back-btn py-2 px-3",
+    on: {
+      click: function click($event) {
+        _vm.typePosts = null;
+      }
+    }
+  }, [_vm._v("\n                Back to post")]), _vm._v(" "), _c("h5", {
+    staticClass: "d-inline ml-5"
+  }, [_vm._v("\n                    " + _vm._s(_vm.type == "category" ? "Selezione per categoria" : "Selezione per Tag") + "\n                ")]), _vm._v(" "), _vm._l(_vm.typePosts, function (post, index) {
+    return _c("div", {
+      key: "".concat(index),
+      staticClass: "preview debug d-flex mb-3"
+    }, [_c("div", {
+      staticClass: "img debug d-flex flex-column"
+    }, [_vm._v("img")]), _vm._v(" "), _vm._m(0, true)]);
+  })], 2), _vm._v(" "), _c("AsideBarComp", {
     on: {
       categoryPack: _vm.getPostsByType
     }
   })], 1)]) : _vm._e()]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "text p-2"
+  }, [_c("p", {
+    staticClass: "category"
+  }, [_vm._v("Categoria")]), _vm._v(" "), _c("h4", {
+    staticClass: "title"
+  }, [_vm._v("Titolo post")]), _vm._v(" "), _c("p", {
+    staticClass: "content"
+  }, [_vm._v("Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore dignissimos nulla esse debitis ab est? Aliquid, dolorum aliquam numquam beatae facilis ")]), _vm._v(" "), _c("button", {
+    staticClass: "btn sd-btn btn-info mb-2",
+    attrs: {
+      type: "button"
+    }
+  }, [_vm._v("Read More")]), _vm._v(" "), _c("p", {
+    staticClass: "date"
+  }, [_vm._v("da/ta/ta")])]);
+}];
 render._withStripped = true;
 
 
@@ -2841,7 +2883,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".jumbo[data-v-43c74dd8] {\n  height: 40vh;\n}\n.img[data-v-43c74dd8] {\n  height: 400px;\n}", ""]);
+exports.push([module.i, ".jumbo[data-v-43c74dd8] {\n  height: 40vh;\n}\n.img[data-v-43c74dd8] {\n  height: 400px;\n}\n.back-btn[data-v-43c74dd8] {\n  font-size: 0.9rem;\n  display: inline-block;\n  cursor: pointer;\n  border-radius: 50%;\n}\n.back-btn[data-v-43c74dd8]:hover {\n  color: rgb(48, 48, 48);\n}\n.preview[data-v-43c74dd8] {\n  box-shadow: 0 0 1px 0px gray;\n  min-height: 240px;\n  background-color: whitesmoke;\n}\n.preview .img[data-v-43c74dd8] {\n  width: 50%;\n  height: 100%;\n}\n.preview .category[data-v-43c74dd8] {\n  color: cadetblue;\n  font-size: 0.7rem;\n  font-weight: bolder;\n}\n.preview .content[data-v-43c74dd8] {\n  color: gray;\n}\n.preview .title[data-v-43c74dd8] {\n  text-transform: uppercase;\n}", ""]);
 
 // exports
 

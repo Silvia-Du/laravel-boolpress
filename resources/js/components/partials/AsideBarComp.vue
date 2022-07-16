@@ -51,8 +51,6 @@ export default {
             apiUrl: '/api/posts',
             categories: null,
             tags: null,
-
-            selectedType: null,
         }
     },
 
@@ -61,7 +59,6 @@ export default {
          getCatAndTags(){
             axios.get(this.apiUrl+'/get-data')
             .then(response =>{
-                // console.log(response);
                 this.categories = response.data.categories;
                 this.tags = response.data.tags;
 
@@ -70,16 +67,14 @@ export default {
 
 
         getSelectedPosts(slug, type){
-
             axios.get(this.apiUrl + '/by-type/'+ slug +'/'+ type)
             .then(response =>{
                 console.log(response.data);
                 if(response.data.category){
-                    // this.selectedType = response.data.category;
-                    this.$emit('categoryPack', response.data.category);
+                    this.$emit('categoryPack', response.data.category, 'category');
                 }
                 if(response.data.tag){
-                    this.selectedType = response.data.tag;
+                    this.$emit('categoryPack', response.data.tag, 'tag');
                 }
             })
 
