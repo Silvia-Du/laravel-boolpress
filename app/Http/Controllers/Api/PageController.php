@@ -11,7 +11,7 @@ use App\Tag;
 class PageController extends Controller
 {
     public function index(){
-        $posts = Post::with('category')->with('tags')->paginate(3);
+        $posts = Post::with('category')->with('tags')->paginate(4);
 
         return response()->json($posts);
     }
@@ -23,18 +23,21 @@ class PageController extends Controller
         return response()->json($post);
     }
 
-    public function getPostsByCategoy($slug){
-        $category = Category::where('slug', $slug)->with('posts')->first();
+    public function getSelectedTypePosts($slug, $type){
+        if($type =='cat'){
+            $category = Category::where('slug', $slug)->with('posts')->first();
+            return response()->json(compact('category'));
+        }
+        if($type == 'tag'){
+            $tag = Tag::where('slug', $slug)->with('posts')->first();
+            return response()->json(compact('tag'));
+        }
 
-        return response()->json($category);
+
+
 
     }
-    public function getPostsByTag($slug){
-        $tag = Tag::where('slug', $slug)->with('posts')->first();
 
-        return response()->json($tag);
-
-    }
 
     public function getCategoryAndTags(){
         $categories= Category::all();
