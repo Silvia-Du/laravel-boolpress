@@ -2,7 +2,7 @@
   <div class="post pb-5">
     <div class="container-fluid jumbo debug"></div>
 
-    <div v-if="post != null" class="container pt-5">
+    <div v-if="post != null" class="container pt-5 main-content">
         <div class="row">
             <div class="col-8 px-2">
 
@@ -44,7 +44,8 @@
                 <div class="categories text-center py-3 px-2 mb-3">
                     <p class="mb-2">Categories</p>
 
-                    <span v-for="category in categories" :key="category.id"
+                    <span @click="getPostByCat(category.slug)"
+                    v-for="category in categories" :key="category.id"
                      class="sd_badge text-uppercase m-1">{{ category.name }}</span>
 
                 </div>
@@ -57,6 +58,7 @@
                 </div>
             </div>
         </div>
+
     </div>
   </div>
 </template>
@@ -100,16 +102,23 @@ export default {
             axios.get(this.apiUrl + '/' + this.$route.params.slug)
             .then(response =>{
                 this.post = response.data;
-                // console.log(this.post.tags);
             })
         },
 
         getCatAndTags(){
             axios.get(this.apiUrl+'/get-data')
             .then(response =>{
-                console.log(response.data);
+                console.log(response);
                 this.categories = response.data.categories;
                 this.tags = response.data.tags;
+
+            })
+        },
+
+        getPostByCat(slug){
+            axios.get(this.apiUrl +'/post-by-cat/'+ slug)
+            .then(response =>{
+                console.log(response.data);
 
             })
         }
@@ -131,30 +140,35 @@ export default {
 .img{
     height: 400px;
 }
-.img-little{
-    height: 150px;
+
+.main-content{
+
+    .img-little{
+        height: 150px;
+    }
+
+    .tags, .categories, .about{
+        border: 1px solid gray;
+        .sd_badge{
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: rgb(231, 216, 216);
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+    }
+
+    a{
+        color: rgb(36, 36, 36);
+        &:hover{
+            text-decoration: none;
+        }
+        .about{
+            cursor: pointer;
+        }
+    }
 }
 
-.tags, .categories, .about{
-    border: 1px solid gray;
-    .sd_badge{
-        display: inline-block;
-        padding: 4px 8px;
-        border-radius: 4px;
-        background-color: rgb(231, 216, 216);
-        font-size: 0.8rem;
-        cursor: pointer;
-    }
-}
-
-a{
-    color: rgb(36, 36, 36);
-    &:hover{
-        text-decoration: none;
-    }
-    .about{
-        cursor: pointer;
-    }
-}
 
 </style>

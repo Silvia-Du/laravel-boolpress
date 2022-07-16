@@ -10,5 +10,7 @@ Route::namespace('Api')
 
         Route::get('/', 'PageController@index');
         Route::get('/get-data', 'PageController@getCategoryAndTags');
+        Route::get('/post-by-cat/{slug}', 'PageController@getPostByCategory');
+        Route::get('/post-by-tag/{slug}', 'PageController@getPostsByTag');
         Route::get('/{slug}', 'PageController@show');
     });

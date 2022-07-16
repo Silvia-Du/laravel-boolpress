@@ -4,7 +4,7 @@
 
         <LoaderComp />
     </div>
-    <div v-else class="container py-5 text-center">
+    <div v-else class="container main-content py-5 text-center">
 
         <h1 class="mb-4">Funny Development</h1>
 
@@ -16,6 +16,9 @@
                 v-for="post in posts" :key="post.id" :postItem="post"
              />
         </div>
+
+        <div class="cta debug">Click on post --> provvisorio</div>
+
         <button type="button" class="btn btn-dark"
         @click="getPosts(pagination.current_p -1)" :disabled="pagination.current_p == 1">Back </button>
         <button v-for="i in pagination.last_p" :key="`pag${i}`"
@@ -77,5 +80,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+    .main-content{
+        position: relative;
+        .cta{
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            // background-image: url(assset);
+            top: 31%;
+            left: -7%;
+        }
+    }
+
 
 </style>
