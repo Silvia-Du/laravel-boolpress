@@ -1,7 +1,7 @@
 <template>
     <div class="col-4 mb-3 px-2">
         <router-link :to="{name: 'full-post', params:{slug: postItem.slug}}">
-            <div class="box p-2 debug">
+            <div class="box p-3 debug">
 
                 <div class="img-box mb-3">
 
@@ -9,9 +9,11 @@
 
 
                     <h5 class="mb-3 mx-2">{{ shortifyContent(postItem.title) }}</h5>
-                    <p class="mb-3">{{ shortifyContent(postItem.content) }}</p>
+                    <p class="mb-5">{{ shortifyContent(postItem.content) }}</p>
 
                     <p class="update mb-0">Last update:{{ beautifyDate }}</p>
+                    <p class="likes mb-0">{{ postItem.likes }} Likes</p>
+                    <p class="views mb-0">{{ postItem.views }} Views</p>
                     <!-- tags in absolute -->
                     <div v-if="postItem.tags.length > 0" class="tags d-flex flex-column align-items-end">
                         <h6 v-for="(tag, index) in postItem.tags" :key="`tag${index}`">
@@ -94,6 +96,18 @@ export default {
             left: 10px;
             font-size: 0.8rem;
             color: cadetblue;
+        }
+        .likes{
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 0.9rem;
+        }
+        .views{
+            position: absolute;
+            bottom: 5px;
+            right: 23%;
+            font-size: 0.9rem;
         }
     }
 

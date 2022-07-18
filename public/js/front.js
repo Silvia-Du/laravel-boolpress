@@ -2330,9 +2330,7 @@ var render = function render() {
         postItem: post
       }
     });
-  })], 2), _vm._v(" "), _c("div", {
-    staticClass: "cta debug"
-  }, [_vm._v("Click on post --> provvisorio")]), _vm._v(" "), _c("button", {
+  })], 2), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("button", {
     staticClass: "btn btn-dark",
     attrs: {
       type: "button",
@@ -2371,7 +2369,19 @@ var render = function render() {
   }, [_vm._v("Next")])], 2)]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "cta debug"
+  }, [_c("img", {
+    attrs: {
+      src: "",
+      alt: ""
+    }
+  })]);
+}];
 render._withStripped = true;
 
 
@@ -2826,16 +2836,20 @@ var render = function render() {
       }
     }
   }, [_c("div", {
-    staticClass: "box p-2 debug"
+    staticClass: "box p-3 debug"
   }, [_c("div", {
     staticClass: "img-box mb-3"
   }), _vm._v(" "), _c("h5", {
     staticClass: "mb-3 mx-2"
   }, [_vm._v(_vm._s(_vm.shortifyContent(_vm.postItem.title)))]), _vm._v(" "), _c("p", {
-    staticClass: "mb-3"
+    staticClass: "mb-5"
   }, [_vm._v(_vm._s(_vm.shortifyContent(_vm.postItem.content)))]), _vm._v(" "), _c("p", {
     staticClass: "update mb-0"
-  }, [_vm._v("Last update:" + _vm._s(_vm.beautifyDate))]), _vm._v(" "), _vm.postItem.tags.length > 0 ? _c("div", {
+  }, [_vm._v("Last update:" + _vm._s(_vm.beautifyDate))]), _vm._v(" "), _c("p", {
+    staticClass: "likes mb-0"
+  }, [_vm._v(_vm._s(_vm.postItem.likes) + " Likes")]), _vm._v(" "), _c("p", {
+    staticClass: "views mb-0"
+  }, [_vm._v(_vm._s(_vm.postItem.views) + " Views")]), _vm._v(" "), _vm.postItem.tags.length > 0 ? _c("div", {
     staticClass: "tags d-flex flex-column align-items-end"
   }, _vm._l(_vm.postItem.tags, function (tag, index) {
     return _c("h6", {
@@ -2997,7 +3011,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".col-4 a[data-v-4061d4de] {\n  text-decoration: none;\n  color: rgb(34, 34, 34);\n}\n.col-4 .box[data-v-4061d4de] {\n  background-color: whitesmoke;\n  border-radius: 5px;\n  position: relative;\n}\n.col-4 .box .img-box[data-v-4061d4de] {\n  width: 100%;\n  height: 200px;\n  border: dashed;\n  background-color: rgba(46, 42, 42, 0.288);\n  border-color: cadetblue;\n  color: cadetblue;\n}\n.col-4 .box .tags[data-v-4061d4de] {\n  position: absolute;\n  right: 11px;\n  top: 10px;\n}\n.col-4 .box .update[data-v-4061d4de] {\n  position: absolute;\n  bottom: 5px;\n  left: 10px;\n  font-size: 0.8rem;\n  color: cadetblue;\n}", ""]);
+exports.push([module.i, ".col-4 a[data-v-4061d4de] {\n  text-decoration: none;\n  color: rgb(34, 34, 34);\n}\n.col-4 .box[data-v-4061d4de] {\n  background-color: whitesmoke;\n  border-radius: 5px;\n  position: relative;\n}\n.col-4 .box .img-box[data-v-4061d4de] {\n  width: 100%;\n  height: 200px;\n  border: dashed;\n  background-color: rgba(46, 42, 42, 0.288);\n  border-color: cadetblue;\n  color: cadetblue;\n}\n.col-4 .box .tags[data-v-4061d4de] {\n  position: absolute;\n  right: 11px;\n  top: 10px;\n}\n.col-4 .box .update[data-v-4061d4de] {\n  position: absolute;\n  bottom: 5px;\n  left: 10px;\n  font-size: 0.8rem;\n  color: cadetblue;\n}\n.col-4 .box .likes[data-v-4061d4de] {\n  position: absolute;\n  bottom: 5px;\n  right: 10px;\n  font-size: 0.9rem;\n}\n.col-4 .box .views[data-v-4061d4de] {\n  position: absolute;\n  bottom: 5px;\n  right: 23%;\n  font-size: 0.9rem;\n}", ""]);
 
 // exports
 

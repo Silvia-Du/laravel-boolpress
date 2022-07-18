@@ -30,7 +30,7 @@
                 class="sd_badge text-uppercase m-1">{{ category.name }}</span>
 
         </div>
-        <!-- back to posts -->
+        <!-- social icons -->
         <div class="categories text-center py-3 px-2">
             <p class="mb-2">Resta collegato</p>
 

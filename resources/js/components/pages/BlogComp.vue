@@ -11,13 +11,17 @@
         <p class="mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus eum nisi commodi officia aperiam? Distinctio, delectus labore. Voluptates assumenda culpa, iure eos reiciendis suscipit modi in obcaecati nulla, accusamus, quisquam adipisci recusandae at sequi? Fugiat, tempore commodi. Aliquid maiores ipsum, rerum soluta deserunt et ullam vel aliquam voluptatibus vero velit cupiditate eius, aspernatur sint tenetur ducimus. Rem vero voluptates beatae saepe quod facilis minima quia, culpa possimus esse repellat maxime doloribus placeat ipsam. Sint nostrum laboriosam dignissimos ut omnis sunt odio expedita esse inventore! Neque, vitae porro modi libero fugit nemo dolores provident, ex facere eligendi magnam dolorem at consequatur.</p>
 
         <div class="blog-section row py-5 px-2">
+
             <h2 class="w-100 mb-5">Post dedicati</h2>
             <PostComp
-                v-for="post in posts" :key="post.id" :postItem="post"
-             />
+            v-for="post in posts" :key="post.id" :postItem="post"
+            />
+
         </div>
 
-        <div class="cta debug">Click on post --> provvisorio</div>
+        <div class="cta debug">
+            <img src="" alt="">
+        </div>
 
         <button type="button" class="btn btn-dark"
         @click="getPosts(pagination.current_p -1)" :disabled="pagination.current_p == 1">Back </button>
