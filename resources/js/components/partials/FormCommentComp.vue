@@ -1,6 +1,11 @@
 <template>
-    <form>
-        <div class="mb-3" @submit.prevent="sendComment">
+    <div >
+        <div class="mb-3">
+            <div class="mb-3">
+            <input v-model="title" type="text" class="form-control" id="title" placeholder="Titolo commento">
+        </div>
+        </div>
+        <div class="mb-3" >
             <textarea v-model="comment"
             class="form-control"
             name="content" id="content" cols="30" rows="10" placeholder="Write your comment here...">
@@ -13,15 +18,18 @@
         </div>
 
         <div class="mb-3">
-          <input v-model="fullName" type="text" class="form-control" id="full_name" placeholder="Your Full name">
+          <input v-model="name" type="text" class="form-control" id="name" placeholder="Your Full name">
+        </div>
+        <div class="mb-3">
+          <input v-model="surname" type="text" class="form-control" id="surname" placeholder="Your Full name">
         </div>
 
         <!-- <div class="mb-3 form-check">
           <input v-model="agreement" type="checkbox" class="form-check-input" id="agreement">
           <label class="form-check-label text-gray" for="agreement">Save my name and e-mail in this browser for the next time I comment.</label>
         </div> -->
-        <button type="submit" class="btn sd_btn">Submit</button>
-    </form>
+        <button @click="sendComment" class="btn sd_btn">Submit</button>
+    </div>
 </template>
 
 <script>
@@ -30,9 +38,12 @@ export default {
 
     data(){
         return{
-            fullName: '',
+            name: '',
+            surname: '',
+            title:'',
             eMail: '',
             comment: '',
+            // apiUrl: 'api/posts/comment',
             // agreement: true,
 
              errors:{
@@ -44,10 +55,24 @@ export default {
     },
 
     methods: {
-        // sendComment(){
-        //     console.log('invio form');
-        //     axios.post()
-        // }
+        sendComment(){
+            // preventDefault(e);
+            console.log('invio form');
+            axios.post('http://127.0.0.1:8000/api/posts/comment'
+            // {
+
+            //         'name': this.name,
+            //         'surname': this.surname,
+            //         'email': this.eMail,
+            //         'title': this.title,
+            //         'content': this.content
+
+            // }
+            )
+            .then(r=>{
+                console.log(r);
+            })
+        }
     },
 }
 </script>

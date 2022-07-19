@@ -2192,9 +2192,12 @@ __webpack_require__.r(__webpack_exports__);
   name: 'FormCommentComp',
   data: function data() {
     return {
-      fullName: '',
+      name: '',
+      surname: '',
+      title: '',
       eMail: '',
       comment: '',
+      // apiUrl: 'api/posts/comment',
       // agreement: true,
       errors: {
         comment: null,
@@ -2203,10 +2206,21 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  methods: {// sendComment(){
-    //     console.log('invio form');
-    //     axios.post()
-    // }
+  methods: {
+    sendComment: function sendComment() {
+      // preventDefault(e);
+      console.log('invio form');
+      axios.post('http://127.0.0.1:8000/api/posts/comment' // {
+      //         'name': this.name,
+      //         'surname': this.surname,
+      //         'email': this.eMail,
+      //         'title': this.title,
+      //         'content': this.content
+      // }
+      ).then(function (r) {
+        console.log(r);
+      });
+    }
   }
 });
 
@@ -2774,14 +2788,34 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("form", [_c("div", {
-    staticClass: "mb-3",
+  return _c("div", [_c("div", {
+    staticClass: "mb-3"
+  }, [_c("div", {
+    staticClass: "mb-3"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.title,
+      expression: "title"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "title",
+      placeholder: "Titolo commento"
+    },
+    domProps: {
+      value: _vm.title
+    },
     on: {
-      submit: function submit($event) {
-        $event.preventDefault();
-        return _vm.sendComment.apply(null, arguments);
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.title = $event.target.value;
       }
     }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
   }, [_c("textarea", {
     directives: [{
       name: "model",
@@ -2836,28 +2870,52 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.fullName,
-      expression: "fullName"
+      value: _vm.name,
+      expression: "name"
     }],
     staticClass: "form-control",
     attrs: {
       type: "text",
-      id: "full_name",
+      id: "name",
       placeholder: "Your Full name"
     },
     domProps: {
-      value: _vm.fullName
+      value: _vm.name
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.fullName = $event.target.value;
+        _vm.name = $event.target.value;
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.surname,
+      expression: "surname"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "surname",
+      placeholder: "Your Full name"
+    },
+    domProps: {
+      value: _vm.surname
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.surname = $event.target.value;
       }
     }
   })]), _vm._v(" "), _c("button", {
     staticClass: "btn sd_btn",
-    attrs: {
-      type: "submit"
+    on: {
+      click: _vm.sendComment
     }
   }, [_vm._v("Submit")])]);
 };

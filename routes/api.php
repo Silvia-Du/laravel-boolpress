@@ -13,5 +13,5 @@ Route::namespace('Api')
         Route::get('/by-type/{slug}/{type}', 'PageController@getSelectedTypePosts');
         Route::get('/{slug}', 'PageController@show');
 
-        Route::post('comment', 'PageController@update');
+        Route::post('comment/', 'PageController@update');
     });
