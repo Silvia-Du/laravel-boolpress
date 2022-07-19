@@ -20,6 +20,7 @@
             <th scope="col">Autore</th>
             <th scope="col">Categoria</th>
             <th scope="col">Tags</th>
+            <th scope="col">Comments n'</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -38,6 +39,8 @@
                         -
                     @endforelse
                 </td>
+
+                <td>{{ count($post->comments) > 0? count($post->comments) : '-' }}</td>
                 <td>
                     <a type="button" class="btn btn-info" href="{{ route('admin.posts.show', $post) }}">View more</a>
                     <a type="button" class="btn btn-primary" href="{{ route('admin.posts.edit', $post) }}">edit</a>
