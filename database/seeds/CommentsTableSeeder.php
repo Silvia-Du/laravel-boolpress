@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Comment;
 use App\Post;
+use App\PublicUser;
 use Faker\Generator as Faker;
 
 class CommentsTableSeeder extends Seeder
@@ -22,6 +23,8 @@ class CommentsTableSeeder extends Seeder
 
             $id_post_rand = Post::inRandomOrder()->first()->id;
             $new_comment->post_id = $id_post_rand;
+
+
 
             $new_comment->save();
 

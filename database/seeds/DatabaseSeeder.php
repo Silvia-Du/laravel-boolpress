@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PostsTagsTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
         $this->call(PublicUsersTableSeeder::class);
-        $this->call(UpdateCommentsSeeder::class);
+        // $this->call(UpdateCommentsSeeder::class);
     }
 }

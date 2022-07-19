@@ -30,8 +30,9 @@ class Update2CommentsTable extends Migration
     public function down()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->dropForeign(['public_user_id']);
-            $table->dropColumn('public_user_id');
+
+        $table->dropForeign(['public_user_id']);
+        $table->dropColumn('public_user_id');
         });
     }
 }

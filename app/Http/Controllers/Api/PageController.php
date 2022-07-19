@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Post;
+use App\Comment;
 use App\Category;
 use App\Tag;
 
@@ -63,6 +64,7 @@ class PageController extends Controller
                     'comment.required' => 'Il commento è bbligatorio',
                 ]
             );
+
 
         if($validator->fails()){
             return response()->json([

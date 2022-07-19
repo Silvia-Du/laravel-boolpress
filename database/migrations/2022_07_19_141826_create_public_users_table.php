@@ -17,8 +17,9 @@ class CreatePublicUsersTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('surname', 70);
-            $table->string('email', 100);
+            $table->string('email', 100)->unique();
             $table->timestamps();
+
         });
     }
 
@@ -30,5 +31,6 @@ class CreatePublicUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('public_users');
+
     }
 }

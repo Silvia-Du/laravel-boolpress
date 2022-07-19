@@ -12,7 +12,8 @@ class Comment extends Model
         'title',
         'slug',
         'content',
-        'post_id'
+        'post_id',
+        'public_user_id'
     ];
 
     public function post(){
