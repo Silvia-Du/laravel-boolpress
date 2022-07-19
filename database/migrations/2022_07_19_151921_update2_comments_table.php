@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateCommentsTable extends Migration
+class Update2CommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,11 @@ class UpdateCommentsTable extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->unsignedBigInteger('post_id')
-                ->after('id');
-            $table->foreign('post_id')
-                ->references('id')->on('posts')
+            $table->unsignedBigInteger('public_user_id')
+                ->after('post_id');
+            $table->foreign('public_user_id')
+                ->references('id')->on('public_users')
                 ->onDelete('cascade');
-
-
         });
     }
 
@@ -32,10 +30,8 @@ class UpdateCommentsTable extends Migration
     public function down()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->dropForeign(['post_id']);
-            $table->dropColumn('post_id');
-
-
+            $table->dropForeign(['public_user_id']);
+            $table->dropColumn('public_user_id');
         });
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Comment;
+use App\Post;
 use Faker\Generator as Faker;
 
 class CommentsTableSeeder extends Seeder
@@ -17,7 +18,11 @@ class CommentsTableSeeder extends Seeder
             $new_comment = new Comment();
             $new_comment->title = $faker->sentence(4);
             $new_comment->slug = Comment::slugGenerator($new_comment->title);
-            $new_comment->description = $faker->text(300);
+            $new_comment->content = $faker->text(300);
+
+            $id_post_rand = Post::inRandomOrder()->first()->id;
+            $new_comment->post_id = $id_post_rand;
+
             $new_comment->save();
 
         }

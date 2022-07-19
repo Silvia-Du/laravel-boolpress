@@ -8,8 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
 
+    protected $fillable =[
+        'title',
+        'slug',
+        'content',
+        'post_id'
+    ];
+
     public function post(){
         return $this->belongsTo('App\Post');
+    }
+
+    public function publicUser(){
+        return $this->belongsTo('App\PublicUser');
     }
 
     public static function slugGenerator($title){

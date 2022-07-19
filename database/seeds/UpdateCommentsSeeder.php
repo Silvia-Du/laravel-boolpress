@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Post;
+use App\PublicUser;
 use App\Comment;
 
-class UpadateCommentsSeeder extends Seeder
+class UpdateCommentsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,10 +14,12 @@ class UpadateCommentsSeeder extends Seeder
     public function run()
     {
         $comments = Comment::all();
+
         foreach($comments as $comment){
-            $id_post_rand = Post::inRandomOrder()->first()->id;
-            $comment->post_id = $id_post_rand;
+            $id_public_user = PublicUser::inRandomOrder()->first()->id;
+            $comment->public_user_id = $id_public_user;
             $comment->update();
         }
+
     }
 }
