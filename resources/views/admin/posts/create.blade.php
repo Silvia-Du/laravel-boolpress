@@ -107,7 +107,7 @@
             <i class="fa-solid fa-arrow-left"></i>
             <a href="{{ route('admin.posts.index') }}">Torna alla lista</a>
         </h5>
-      </form>
+    </form>
 
 
 @endsection

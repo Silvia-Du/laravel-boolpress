@@ -16,7 +16,8 @@ class UpdatePostsSeeder extends Seeder
         $posts = Post::all();
 
         foreach($posts as $post){
-            $id_cat_random = Category::inRandomOrder()->first()->id;
+            $id_cat_random = Category::inRandomOrder()->first()
+            ->id;
             $post->category_id = $id_cat_random;
             $post->update();
         }
