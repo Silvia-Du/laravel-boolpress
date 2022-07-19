@@ -16,10 +16,10 @@
           <input v-model="fullName" type="text" class="form-control" id="full_name" placeholder="Your Full name">
         </div>
 
-        <div class="mb-3 form-check">
+        <!-- <div class="mb-3 form-check">
           <input v-model="agreement" type="checkbox" class="form-check-input" id="agreement">
           <label class="form-check-label text-gray" for="agreement">Save my name and e-mail in this browser for the next time I comment.</label>
-        </div>
+        </div> -->
         <button type="submit" class="btn sd_btn">Submit</button>
     </form>
 </template>
@@ -33,15 +33,21 @@ export default {
             fullName: '',
             eMail: '',
             comment: '',
-            agreement: true,
+            // agreement: true,
+
+             errors:{
+                comment: null,
+                email: null,
+                full_name: null
+            },
         }
     },
 
     methods: {
-        sendComment(){
-            console.log('invio form');
-            axios.post()
-        }
+        // sendComment(){
+        //     console.log('invio form');
+        //     axios.post()
+        // }
     },
 }
 </script>

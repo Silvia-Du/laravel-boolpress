@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -33,9 +34,6 @@ class PageController extends Controller
             return response()->json(compact('tag'));
         }
 
-
-
-
     }
 
 
@@ -44,6 +42,41 @@ class PageController extends Controller
         $tags = Tag::all();
 
         return response()->json(compact('categories', 'tags'));
+    }
+
+    public function update(Request $request){
+        $data = $request->all();
+
+        // controllo la validità dei dati
+        $validator = Validator::make($data,
+                [
+                    'full_name' => 'required|max:100',
+                    'email' => 'required|email|max:150',
+                    'comment' => 'required |min:50',
+                ],
+                [
+                    'full_name.required' => 'Il nome è bbligatorio',
+                    'full_name.max' => 'Il nome può avere al massiamo :max caratteri',
+                    'email.required' => 'L\'indirizzo email è obbligatorio',
+                    'email.max' => 'L\'indirizzo email può avere al massiamo :max caratteri',
+                    'email.email' => 'L\'indirizzo email non è un indirizzo valido',
+                    'comment.required' => 'Il commento è bbligatorio',
+                ]
+            );
+
+        if($validator->fails()){
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
+
+        $new_comment = new Comment();
+        $new_comment->fill($data);
+        $new_comment->save();
+
+        return response()->json(['success'=>true]);
+
     }
 
 }

@@ -2195,8 +2195,18 @@ __webpack_require__.r(__webpack_exports__);
       fullName: '',
       eMail: '',
       comment: '',
-      agreement: true
+      // agreement: true,
+      errors: {
+        comment: null,
+        email: null,
+        full_name: null
+      }
     };
+  },
+  methods: {// sendComment(){
+    //     console.log('invio form');
+    //     axios.post()
+    // }
   }
 });
 
@@ -2844,49 +2854,7 @@ var render = function render() {
         _vm.fullName = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "mb-3 form-check"
-  }, [_c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.agreement,
-      expression: "agreement"
-    }],
-    staticClass: "form-check-input",
-    attrs: {
-      type: "checkbox",
-      id: "agreement"
-    },
-    domProps: {
-      checked: Array.isArray(_vm.agreement) ? _vm._i(_vm.agreement, null) > -1 : _vm.agreement
-    },
-    on: {
-      change: function change($event) {
-        var $$a = _vm.agreement,
-            $$el = $event.target,
-            $$c = $$el.checked ? true : false;
-
-        if (Array.isArray($$a)) {
-          var $$v = null,
-              $$i = _vm._i($$a, $$v);
-
-          if ($$el.checked) {
-            $$i < 0 && (_vm.agreement = $$a.concat([$$v]));
-          } else {
-            $$i > -1 && (_vm.agreement = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-          }
-        } else {
-          _vm.agreement = $$c;
-        }
-      }
-    }
-  }), _vm._v(" "), _c("label", {
-    staticClass: "form-check-label text-gray",
-    attrs: {
-      "for": "agreement"
-    }
-  }, [_vm._v("Save my name and e-mail in this browser for the next time I comment.")])]), _vm._v(" "), _c("button", {
+  })]), _vm._v(" "), _c("button", {
     staticClass: "btn sd_btn",
     attrs: {
       type: "submit"
