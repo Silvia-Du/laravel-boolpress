@@ -91,7 +91,6 @@ export default {
             height: 100px;
             width: 100px;
             position: absolute;
-            // background-image: url(assset);
             top: 31%;
             left: -7%;
         }

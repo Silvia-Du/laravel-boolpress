@@ -6,9 +6,10 @@
         <div class="row">
             <div v-if="!typePosts" class="col-8 px-2">
 
+                <div class="img debug mb-3"></div>
+                <p class="category">{{ post.category.name }}</p>
                 <h3>{{ post.title }}</h3>
                 <p>---- {{ beautifyDate }}-----</p>
-                <div class="img debug mb-3"></div>
                 <p>{{ post.content }}</p>
                 <h5>Lorem ipsum dolor sit amet consectetur adipisicing.</h5>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam incidunt ab ex ullam ut quasi odio eum nam ipsa totam.</p>
@@ -16,15 +17,20 @@
                 <h5 v-for="(tag, index) in post.tags" :key="`tag${index}`" class="d-inline mr-2 mb-2">
                     <span class="badge badge-light">{{ tag.name }}</span>
                 </h5>
-                <h5>#category->{{ post.category.name }}</h5>
+
+                <div class="py-4">
+                    <h5>Post a comment</h5>
+                    <FormCommentComp />
+                </div>
             </div>
+
             <!-- v-else -->
             <div v-else class="col-8 mb-4 px-0">
                 <p class="back-btn py-2 px-3" @click="typePosts = null">
                 <!-- <i class="fa-solid fa-arrow-left"></i> -->
                 Back to post</p>
                 <h5 class="d-inline ml-5">
-                    {{ type == 'category'? 'Selezione per categoria' : 'Selezione per Tag' }}
+                    {{ type == 'category'? `Selezione per categoria: ${typeName}`: `Selezione per tag: ${typeName}` }}
                 </h5>
 
                 <div v-for="(post, index) in typePosts" :key="`${index}`"
@@ -32,11 +38,13 @@
                     <div class="img debug d-flex flex-column">img</div>
                     <!-- post-data -->
                     <div class="text p-2">
-                        <p class="category">Categoria</p>
-                        <h4 class="title">Titolo post</h4>
-                        <p class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore dignissimos nulla esse debitis ab est? Aliquid, dolorum aliquam numquam beatae facilis </p>
-                        <button type="button" class="btn sd-btn btn-info mb-2">Read More</button>
-                        <p class="date">da/ta/ta</p>
+                        <p class="category">{{ post.category }}</p>
+                        <h4 class="title">{{ post.title }}</h4>
+                        <p class="content">{{ shortifyContent(post.content) }}</p>
+                        <button type="button" class="btn sd_btn mb-2">Read More</button>
+                        <p class="date">{{ beautifyDate }}</p>
+                        <span>{{ post.likes }}like</span>
+                        <span>-Messaggi</span>
 
                     </div>
                 </div>
@@ -57,11 +65,14 @@
 <script>
 
 import AsideBarComp from '../partials/AsideBarComp.vue';
+import FormCommentComp from '../partials/FormCommentComp.vue';
+// import {shortifyContent} from '../../data/config';
 export default {
     name:'FullPostComp',
 
     components:{
-        AsideBarComp
+        AsideBarComp,
+        FormCommentComp
     },
 
     data(){
@@ -69,6 +80,7 @@ export default {
             apiUrl: '/api/posts',
             post: null,
             type: '',
+            typeName: '',
             typePosts: null,
 
         }
@@ -96,7 +108,6 @@ export default {
     methods: {
 
         getPost(){
-            // console.log(this.$route.params.slug);
             axios.get(this.apiUrl + '/' + this.$route.params.slug)
             .then(response =>{
                 this.post = response.data;
@@ -106,11 +117,17 @@ export default {
         getPostsByType(object, data){
             //reset
             this.type = '';
+            this.typeNme = '';
             this.typePosts= null;
             //valorizzazione
             this.type = data;
+            this.typeName = object.name;
+            console.log(object.name);
             this.typePosts = object.posts;
-            // console.log('sono dentro',this.typePosts);
+        },
+
+        shortifyContent(text){
+            return text.substring(1, 100)+ '...';
         }
 
     },
@@ -143,26 +160,26 @@ export default {
 }
 
  .preview{
-            box-shadow: 0 0 1px 0px gray;
-            min-height: 240px;
-            background-color: whitesmoke;
-            .img{
-                width: 50%;
-                height: 100%;
-            }
+    box-shadow: 0 0 1px 0px gray;
+    min-height: 240px;
+    background-color: whitesmoke;
+    .img{
+        width: 380px;
+        height: 100%;
+    }
+    .category{
+        color: cadetblue;
+        font-size: 0.7rem;
+        font-weight: bolder;
+    }
+    .content{
+        color: gray;
+    }
+    .title{
+        text-transform: uppercase;
+    }
 
-            .category{
-                color: cadetblue;
-                font-size: 0.7rem;
-                font-weight: bolder;
-            }
-            .content{
-                color: gray;
-            }
-            .title{
-                text-transform: uppercase;
-            }
-        }
+}
 
 
 </style>

@@ -9282,3 +9282,15 @@ main {
   width: 50%;
   border-radius: 15px;
 }
+
+.sd_btn {
+  border-radius: 0%;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  background-color: #58bcb3;
+  color: white;
+}
+.sd_btn:hover {
+  color: white;
+  background-color: #4fa79f;
+}

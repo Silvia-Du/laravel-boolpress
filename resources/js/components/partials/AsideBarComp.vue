@@ -69,7 +69,7 @@ export default {
         getSelectedPosts(slug, type){
             axios.get(this.apiUrl + '/by-type/'+ slug +'/'+ type)
             .then(response =>{
-                console.log(response.data);
+                // console.log(response.data);
                 if(response.data.category){
                     this.$emit('categoryPack', response.data.category, 'category');
                 }
