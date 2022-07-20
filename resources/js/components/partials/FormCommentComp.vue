@@ -28,13 +28,17 @@
           <input v-model="agreement" type="checkbox" class="form-check-input" id="agreement">
           <label class="form-check-label text-gray" for="agreement">Save my name and e-mail in this browser for the next time I comment.</label>
         </div> -->
-        <button @click="sendComment" class="btn sd_btn">Submit</button>
+        <button @click="sendComment"  class="btn sd_btn">Submit</button>
     </div>
 </template>
 
 <script>
 export default {
     name:'FormCommentComp',
+
+    props:{
+        idPost: Number,
+    },
 
     data(){
         return{
@@ -43,7 +47,7 @@ export default {
             title:'',
             eMail: '',
             comment: '',
-            // apiUrl: 'api/posts/comment',
+            apiUrl: 'http://127.0.0.1:8000/api/posts/comment',
             // agreement: true,
 
              errors:{
@@ -58,16 +62,15 @@ export default {
         sendComment(){
             // preventDefault(e);
             console.log('invio form');
-            axios.post('http://127.0.0.1:8000/api/posts/comment'
-            // {
+            axios.post(this.apiUrl,{
 
-            //         'name': this.name,
-            //         'surname': this.surname,
-            //         'email': this.eMail,
-            //         'title': this.title,
-            //         'content': this.content
-
-            // }
+                'name': this.name,
+                'surname': this.surname,
+                'email': this.eMail,
+                'title': this.title,
+                'content': this.content,
+                'post_id' :this.idPost
+            }
             )
             .then(r=>{
                 console.log(r);

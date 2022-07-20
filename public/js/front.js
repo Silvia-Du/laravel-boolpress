@@ -2190,6 +2190,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FormCommentComp',
+  props: {
+    idPost: Number
+  },
   data: function data() {
     return {
       name: '',
@@ -2197,7 +2200,7 @@ __webpack_require__.r(__webpack_exports__);
       title: '',
       eMail: '',
       comment: '',
-      // apiUrl: 'api/posts/comment',
+      apiUrl: 'http://127.0.0.1:8000/api/posts/comment',
       // agreement: true,
       errors: {
         comment: null,
@@ -2210,14 +2213,14 @@ __webpack_require__.r(__webpack_exports__);
     sendComment: function sendComment() {
       // preventDefault(e);
       console.log('invio form');
-      axios.post('http://127.0.0.1:8000/api/posts/comment' // {
-      //         'name': this.name,
-      //         'surname': this.surname,
-      //         'email': this.eMail,
-      //         'title': this.title,
-      //         'content': this.content
-      // }
-      ).then(function (r) {
+      axios.post(this.apiUrl, {
+        'name': this.name,
+        'surname': this.surname,
+        'email': this.eMail,
+        'title': this.title,
+        'content': this.content,
+        'post_id': this.idPost
+      }).then(function (r) {
         console.log(r);
       });
     }
@@ -2386,7 +2389,13 @@ var render = function render() {
         postItem: post
       }
     });
-  })], 2), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("button", {
+  })], 2), _vm._v(" "), _c("img", {
+    staticClass: "cta",
+    attrs: {
+      src: __webpack_require__(/*! ../../../../public/img/click.png */ "./public/img/click.png"),
+      alt: "cta-click"
+    }
+  }), _vm._v(" "), _c("button", {
     staticClass: "btn btn-dark",
     attrs: {
       type: "button",
@@ -2425,19 +2434,7 @@ var render = function render() {
   }, [_vm._v("Next")])], 2)]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "cta debug"
-  }, [_c("img", {
-    attrs: {
-      src: "",
-      alt: ""
-    }
-  })]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -2539,7 +2536,11 @@ var render = function render() {
     }, [_vm._v(_vm._s(tag.name))])]);
   }), _vm._v(" "), _c("div", {
     staticClass: "py-4"
-  }, [_c("h5", [_vm._v("Post a comment")]), _vm._v(" "), _c("FormCommentComp")], 1)], 2) : _c("div", {
+  }, [_c("h5", [_vm._v("Post a comment")]), _vm._v(" "), _c("FormCommentComp", {
+    attrs: {
+      idPost: _vm.post.id
+    }
+  })], 1)], 2) : _c("div", {
     staticClass: "col-8 mb-4 px-0"
   }, [_c("p", {
     staticClass: "back-btn py-2 px-3",
@@ -3086,7 +3087,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".main-content[data-v-02893632] {\n  position: relative;\n}\n.main-content .cta[data-v-02893632] {\n  height: 100px;\n  width: 100px;\n  position: absolute;\n  top: 31%;\n  left: -7%;\n}", ""]);
+exports.push([module.i, ".main-content[data-v-02893632] {\n  position: relative;\n}\n.main-content .cta[data-v-02893632] {\n  width: 143px;\n  position: absolute;\n  top: 31%;\n  left: -11%;\n}", ""]);
 
 // exports
 
@@ -18971,6 +18972,17 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+
+/***/ "./public/img/click.png":
+/*!******************************!*\
+  !*** ./public/img/click.png ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/click.png?175b722e990687be99746ebc2e62941a";
 
 /***/ }),
 

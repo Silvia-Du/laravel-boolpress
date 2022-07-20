@@ -46,40 +46,40 @@ class PageController extends Controller
     }
 
     public function update(Request $request){
-        // $data = $request->all();
+        $data = $request->all();
 
 
         // controllo la validità dei dati
-        // $validator = Validator::make($data,
-        //         [
-        //             'full_name' => 'required|max:100',
-        //             'email' => 'required|email|max:150',
-        //             'comment' => 'required |min:50',
-        //         ],
-        //         [
-        //             'full_name.required' => 'Il nome è bbligatorio',
-        //             'full_name.max' => 'Il nome può avere al massiamo :max caratteri',
-        //             'email.required' => 'L\'indirizzo email è obbligatorio',
-        //             'email.max' => 'L\'indirizzo email può avere al massiamo :max caratteri',
-        //             'email.email' => 'L\'indirizzo email non è un indirizzo valido',
-        //             'comment.required' => 'Il commento è bbligatorio',
-        //         ]
-        //     );
+        $validator = Validator::make($data,
+                [
+                    'full_name' => 'required|max:100',
+                    'email' => 'required|email|max:150',
+                    'comment' => 'required |min:30',
+                ],
+                [
+                    'full_name.required' => 'Il nome è bbligatorio',
+                    'full_name.max' => 'Il nome può avere al massiamo :max caratteri',
+                    'email.required' => 'L\'indirizzo email è obbligatorio',
+                    'email.max' => 'L\'indirizzo email può avere al massiamo :max caratteri',
+                    'email.email' => 'L\'indirizzo email non è un indirizzo valido',
+                    'comment.required' => 'Il commento è bbligatorio',
+                ]
+            );
 
 
-        // if($validator->fails()){
-        //     return response()->json([
-        //         'success' => false,
-        //         'errors' => $validator->errors()
-        //     ]);
-        // }
+        if($validator->fails()){
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
 
-        // $new_comment = new Comment();
-        // $new_comment->fill($data);
-        // $new_comment->save();
+        $new_comment = new Comment();
+        $new_comment->fill($data);
+        $new_comment->save();
 
-        // $all_comments = Comment::all();
-        return response()->json('ciao');
+        $all_comments = Comment::all();
+        return response()->json(['data'=>$data, 'success'=>true]);
 
     }
 

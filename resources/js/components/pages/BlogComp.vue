@@ -19,9 +19,9 @@
 
         </div>
 
-        <div class="cta debug">
-            <img src="" alt="">
-        </div>
+
+            <img class="cta" src="../../../../public/img/click.png" alt="cta-click">
+
 
         <button type="button" class="btn btn-dark"
         @click="getPosts(pagination.current_p -1)" :disabled="pagination.current_p == 1">Back </button>
@@ -88,11 +88,10 @@ export default {
     .main-content{
         position: relative;
         .cta{
-            height: 100px;
-            width: 100px;
+            width: 143px;
             position: absolute;
             top: 31%;
-            left: -7%;
+            left: -11%;
         }
     }
 

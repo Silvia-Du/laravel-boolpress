@@ -20,7 +20,7 @@
 
                 <div class="py-4">
                     <h5>Post a comment</h5>
-                    <FormCommentComp />
+                    <FormCommentComp :idPost="post.id" />
                 </div>
             </div>
 
