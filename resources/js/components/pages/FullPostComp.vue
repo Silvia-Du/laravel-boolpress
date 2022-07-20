@@ -27,7 +27,7 @@
             <!-- v-else -->
             <div v-else class="col-8 mb-4 px-0">
                 <p class="back-btn py-2 px-3" @click="typePosts = null">
-                <!-- <i class="fa-solid fa-arrow-left"></i> -->
+
                 Back to post</p>
                 <h5 class="d-inline ml-5">
                     {{ type == 'category'? `Selezione per categoria: ${typeName}`: `Selezione per tag: ${typeName}` }}

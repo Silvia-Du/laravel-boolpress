@@ -1,7 +1,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 // @import '~@fontsource/battambang/index.css';
-// @import '~@fortawesom/fontawesome-free/'
+
+
+$fa-font-path: "../../fonts/font-awesome" !default;
+@import 'node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@import 'node_modules/@fortawesome/fontawesome-free/scss/brands';
+@import 'node_modules/@fortawesome/fontawesome-free/scss/regular';
+@import 'node_modules/@fortawesome/fontawesome-free/scss/solid';
 
 
 body{

@@ -1,5 +1,13 @@
 <template>
   <div>
+
+
+aaaaaaaaaaaaaaaaaaaaaaaaaa
+                <i class="fa-solid fa-arrow-down-1-9"></i>
+                <i class="fa-solid fa-1"></i>
+                <i class="fa-brands fa-github-square"></i>
+eeeeeeeeeeeeeeeeeeeeee
+
     <div v-if="!posts" class="container d-flex justify-content-center align-items-center py-5">
 
         <LoaderComp />

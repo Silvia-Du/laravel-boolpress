@@ -50,22 +50,29 @@ class PageController extends Controller
         $data = $request->all();
 
 
-
         // controllo la validità dei dati
         $validator = Validator::make($data,
                 [
-                    'full_name' => 'required|max:100',
-                    'email' => 'required|email|max:150',
-                    'comment' => 'required |min:30',
+                    'user.name' => 'required|min:3| max:40',
+                    'user.surname' => 'required|min:3|max:40',
+                    'user.email' => 'required|email|max:150',
+                    'comment.title' => 'required |min:7',
+                    'comment.content' => 'required |min:10',
                 ],
-                [
-                    'full_name.required' => 'Il nome è bbligatorio',
-                    'full_name.max' => 'Il nome può avere al massiamo :max caratteri',
-                    'email.required' => 'L\'indirizzo email è obbligatorio',
-                    'email.max' => 'L\'indirizzo email può avere al massiamo :max caratteri',
-                    'email.email' => 'L\'indirizzo email non è un indirizzo valido',
-                    'comment.required' => 'Il commento è bbligatorio',
-                ]
+                // [
+                //     'name.required' => 'Il nome è bbligatorio',
+                //     'name.min' => 'Il nome deve avere minimo :min caratteri',
+                //     'name.max' => 'Il nome può avere al massiamo :max caratteri',
+                //     'surname.required' => 'Il nome è bbligatorio',
+                //     'surname.min' => 'Il cognome deve avere almeno :min caratteri',
+                //     'surname.max' => 'Il cognome può avere al massiamo :max caratteri',
+                //     'email.required' => 'L\'indirizzo email è obbligatorio',
+                //     'email.max' => 'L\'indirizzo email può avere al massiamo :max caratteri',
+                //     'email.email' => 'L\'indirizzo email non è un indirizzo valido',
+                //     'comment.required' => 'Il commento è bbligatorio',
+                //     'comment.min' => 'Il commento dve eavere minimo :min caratteri',
+
+                // ]
             );
 
 
@@ -95,7 +102,7 @@ class PageController extends Controller
         $new_comment->save();
 
         // dump($new_User_id);
-        return response()->json($data);
+        return response()->json(['success'=>true]);
 
     }
 

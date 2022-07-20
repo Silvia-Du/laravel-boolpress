@@ -2203,14 +2203,20 @@ __webpack_require__.r(__webpack_exports__);
       apiUrl: 'http://127.0.0.1:8000/api/posts/comment',
       // agreement: true,
       errors: {
-        comment: null,
+        name: null,
+        surname: null,
         email: null,
-        full_name: null
-      }
+        title: null,
+        comment: null
+      },
+      sending: false,
+      success: false
     };
   },
   methods: {
     sendComment: function sendComment() {
+      var _this = this;
+
       // preventDefault(e);
       console.log('invio form');
       axios.post(this.apiUrl, {
@@ -2224,8 +2230,22 @@ __webpack_require__.r(__webpack_exports__);
           'content': this.content,
           'post_id': this.idPost
         }
-      }).then(function (r) {
-        console.log(r);
+      }).then(function (response) {
+        _this.sending = true;
+        console.log(response.data);
+
+        if (!response.data.success) {
+          _this.errors = response.data.errors;
+          console.log(_this.errors);
+        } else {
+          _this.success = true;
+          _this.errors = {};
+          _this.name = '';
+          _this.surname = '';
+          _this.title = '';
+          _this.eMail = '';
+          _this.content = '';
+        }
       });
     }
   }
@@ -2374,7 +2394,13 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [!_vm.posts ? _c("div", {
+  return _c("div", [_vm._v("\n\n\naaaaaaaaaaaaaaaaaaaaaaaaaa\n                "), _c("i", {
+    staticClass: "fa-solid fa-arrow-down-1-9"
+  }), _vm._v(" "), _c("i", {
+    staticClass: "fa-solid fa-1"
+  }), _vm._v(" "), _c("i", {
+    staticClass: "fa-brands fa-github-square"
+  }), _vm._v("\neeeeeeeeeeeeeeeeeeeeee\n\n    "), !_vm.posts ? _c("div", {
     staticClass: "container d-flex justify-content-center align-items-center py-5"
   }, [_c("LoaderComp")], 1) : _c("div", {
     staticClass: "container main-content py-5 text-center"
@@ -2553,7 +2579,7 @@ var render = function render() {
         _vm.typePosts = null;
       }
     }
-  }, [_vm._v("\n                Back to post")]), _vm._v(" "), _c("h5", {
+  }, [_vm._v("\n\n                Back to post")]), _vm._v(" "), _c("h5", {
     staticClass: "d-inline ml-5"
   }, [_vm._v("\n                    " + _vm._s(_vm.type == "category" ? "Selezione per categoria: ".concat(_vm.typeName) : "Selezione per tag: ".concat(_vm.typeName)) + "\n                ")]), _vm._v(" "), _vm._l(_vm.typePosts, function (post, index) {
     return _c("div", {
@@ -2793,7 +2819,14 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {
+  return _c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.sendComment.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -2919,8 +2952,8 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("button", {
     staticClass: "btn sd_btn",
-    on: {
-      click: _vm.sendComment
+    attrs: {
+      type: "submit"
     }
   }, [_vm._v("Submit")])]);
 };

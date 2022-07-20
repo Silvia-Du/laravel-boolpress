@@ -11,6 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
+ mix.copyDirectory( './node_modules/@fortawesome/fontawesome-free/webfonts/*', './public/fonts/font-awesome' );
+
 mix.js('resources/js/admin.js', 'public/js')
    .js('resources/js/front.js', 'public/js')
     .sass('resources/sass/admin/style.scss', 'public/css/admin')

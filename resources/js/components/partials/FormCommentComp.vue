@@ -1,5 +1,8 @@
 <template>
-    <div >
+    <form
+
+     @submit.prevent="sendComment"
+    >
         <div class="mb-3">
             <div class="mb-3">
             <input v-model="title" type="text" class="form-control" id="title" placeholder="Titolo commento">
@@ -24,12 +27,8 @@
           <input v-model="surname" type="text" class="form-control" id="surname" placeholder="Your Full name">
         </div>
 
-        <!-- <div class="mb-3 form-check">
-          <input v-model="agreement" type="checkbox" class="form-check-input" id="agreement">
-          <label class="form-check-label text-gray" for="agreement">Save my name and e-mail in this browser for the next time I comment.</label>
-        </div> -->
-        <button @click="sendComment"  class="btn sd_btn">Submit</button>
-    </div>
+        <button type="submit"  class="btn sd_btn">Submit</button>
+    </form>
 </template>
 
 <script>
@@ -51,10 +50,15 @@ export default {
             // agreement: true,
 
              errors:{
-                comment: null,
+                name: null,
+                surname: null,
                 email: null,
-                full_name: null
+                title: null,
+                comment: null,
             },
+
+            sending: false,
+            success:false
         }
     },
 
@@ -77,8 +81,21 @@ export default {
                 }
             }
             )
-            .then(r=>{
-                console.log(r);
+            .then(response =>{
+                this.sending = true;
+                console.log(response.data);
+                if(!response.data.success){
+                    this.errors = response.data.errors;
+                    console.log(this.errors);
+                }else{
+                    this.success = true;
+                    this.errors = {};
+                    this.name= '';
+                    this.surname= '';
+                    this.title='';
+                    this.eMail= '';
+                    this.content= '';
+                }
             })
         }
     },

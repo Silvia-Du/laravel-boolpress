@@ -14,4 +14,5 @@ Route::namespace('Api')
         Route::get('/{slug}', 'PageController@show');
 
         Route::post('comment/', 'PageController@update');
+        // Route::post('comment/', 'PageController@update');
     });
