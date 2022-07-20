@@ -2199,7 +2199,7 @@ __webpack_require__.r(__webpack_exports__);
       surname: '',
       title: '',
       eMail: '',
-      comment: '',
+      content: '',
       apiUrl: 'http://127.0.0.1:8000/api/posts/comment',
       // agreement: true,
       errors: {
@@ -2825,8 +2825,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.comment,
-      expression: "comment"
+      value: _vm.content,
+      expression: "content"
     }],
     staticClass: "form-control",
     attrs: {
@@ -2837,12 +2837,12 @@ var render = function render() {
       placeholder: "Write your comment here..."
     },
     domProps: {
-      value: _vm.comment
+      value: _vm.content
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.comment = $event.target.value;
+        _vm.content = $event.target.value;
       }
     }
   })]), _vm._v(" "), _c("div", {

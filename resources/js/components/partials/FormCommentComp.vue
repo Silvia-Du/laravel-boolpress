@@ -6,7 +6,7 @@
         </div>
         </div>
         <div class="mb-3" >
-            <textarea v-model="comment"
+            <textarea v-model="content"
             class="form-control"
             name="content" id="content" cols="30" rows="10" placeholder="Write your comment here...">
             </textarea>
@@ -46,7 +46,7 @@ export default {
             surname: '',
             title:'',
             eMail: '',
-            comment: '',
+            content: '',
             apiUrl: 'http://127.0.0.1:8000/api/posts/comment',
             // agreement: true,
 
