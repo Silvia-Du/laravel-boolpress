@@ -63,13 +63,18 @@ export default {
             // preventDefault(e);
             console.log('invio form');
             axios.post(this.apiUrl,{
+                user:{
 
-                'name': this.name,
-                'surname': this.surname,
-                'email': this.eMail,
-                'title': this.title,
-                'content': this.content,
-                'post_id' :this.idPost
+                    'name': this.name,
+                    'surname': this.surname,
+                    'email': this.eMail,
+                },
+                comment:{
+
+                    'title': this.title,
+                    'content': this.content,
+                    'post_id' :this.idPost
+                }
             }
             )
             .then(r=>{

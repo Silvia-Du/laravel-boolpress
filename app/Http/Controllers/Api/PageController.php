@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Post;
 use App\Comment;
 use App\Category;
+use App\PublicUser;
 use App\Tag;
 
 class PageController extends Controller
@@ -49,37 +50,49 @@ class PageController extends Controller
         $data = $request->all();
 
 
+
         // controllo la validità dei dati
-        $validator = Validator::make($data,
-                [
-                    'full_name' => 'required|max:100',
-                    'email' => 'required|email|max:150',
-                    'comment' => 'required |min:30',
-                ],
-                [
-                    'full_name.required' => 'Il nome è bbligatorio',
-                    'full_name.max' => 'Il nome può avere al massiamo :max caratteri',
-                    'email.required' => 'L\'indirizzo email è obbligatorio',
-                    'email.max' => 'L\'indirizzo email può avere al massiamo :max caratteri',
-                    'email.email' => 'L\'indirizzo email non è un indirizzo valido',
-                    'comment.required' => 'Il commento è bbligatorio',
-                ]
-            );
+        // $validator = Validator::make($data,
+        //         [
+        //             'full_name' => 'required|max:100',
+        //             'email' => 'required|email|max:150',
+        //             'comment' => 'required |min:30',
+        //         ],
+        //         [
+        //             'full_name.required' => 'Il nome è bbligatorio',
+        //             'full_name.max' => 'Il nome può avere al massiamo :max caratteri',
+        //             'email.required' => 'L\'indirizzo email è obbligatorio',
+        //             'email.max' => 'L\'indirizzo email può avere al massiamo :max caratteri',
+        //             'email.email' => 'L\'indirizzo email non è un indirizzo valido',
+        //             'comment.required' => 'Il commento è bbligatorio',
+        //         ]
+        //     );
 
 
-        if($validator->fails()){
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors()
-            ]);
-        }
+        // if($validator->fails()){
+        //     return response()->json([
+        //         'success' => false,
+        //         'errors' => $validator->errors()
+        //     ]);
+        // }
 
-        $new_comment = new Comment();
-        $new_comment->fill($data);
-        $new_comment->save();
+        $new_public_user = new PublicUser();
+        $new_public_user->name = $data['user']['name'];
+        $new_public_user->surname = $data['user']['surname'];
+        $new_public_user->email = $data['user']['email'];
+        // $new_public_user->fill($data['user']);
+        $new_public_user->save();
 
-        $all_comments = Comment::all();
-        return response()->json(['data'=>$data, 'success'=>true]);
+        // $new_User_id = PublicUser::where('email', $data['user']['email'])->first();
+
+        // $new_comment = new Comment();
+        // $new_comment->public_user_id = PublicUser::where('email', $data['user']['email'])->first();
+        // $new_comment->slug = Comment::slugGenerator($data['comment']['title']);
+        // $new_comment->fill($data);
+        // $new_comment->save();
+
+
+        return response()->json($new_public_user);
 
     }
 

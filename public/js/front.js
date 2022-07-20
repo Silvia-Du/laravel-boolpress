@@ -2214,12 +2214,16 @@ __webpack_require__.r(__webpack_exports__);
       // preventDefault(e);
       console.log('invio form');
       axios.post(this.apiUrl, {
-        'name': this.name,
-        'surname': this.surname,
-        'email': this.eMail,
-        'title': this.title,
-        'content': this.content,
-        'post_id': this.idPost
+        user: {
+          'name': this.name,
+          'surname': this.surname,
+          'email': this.eMail
+        },
+        comment: {
+          'title': this.title,
+          'content': this.content,
+          'post_id': this.idPost
+        }
       }).then(function (r) {
         console.log(r);
       });
