@@ -35,7 +35,6 @@ class UpdateCommentsTable extends Migration
             $table->dropForeign(['post_id']);
             $table->dropColumn('post_id');
 
-
         });
     }
 }

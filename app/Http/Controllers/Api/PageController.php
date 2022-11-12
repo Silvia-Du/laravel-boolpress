@@ -59,20 +59,7 @@ class PageController extends Controller
                     'comment.title' => 'required |min:7',
                     'comment.content' => 'required |min:10',
                 ],
-                // [
-                //     'name.required' => 'Il nome è bbligatorio',
-                //     'name.min' => 'Il nome deve avere minimo :min caratteri',
-                //     'name.max' => 'Il nome può avere al massiamo :max caratteri',
-                //     'surname.required' => 'Il nome è bbligatorio',
-                //     'surname.min' => 'Il cognome deve avere almeno :min caratteri',
-                //     'surname.max' => 'Il cognome può avere al massiamo :max caratteri',
-                //     'email.required' => 'L\'indirizzo email è obbligatorio',
-                //     'email.max' => 'L\'indirizzo email può avere al massiamo :max caratteri',
-                //     'email.email' => 'L\'indirizzo email non è un indirizzo valido',
-                //     'comment.required' => 'Il commento è bbligatorio',
-                //     'comment.min' => 'Il commento dve eavere minimo :min caratteri',
 
-                // ]
             );
 
 

@@ -40,20 +40,6 @@
                     Crea un nuovo Post
                 </a>
 
-
-                {{-- <div class="nav-item dropdown">
-                    <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{{ route('admin.posts.index') }}">Tutti i post</a>
-                      <a class="dropdown-item" href="{{ route('admin.posts.create') }}">Crea nuovo post</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Tutti i tags</a>
-                      <a class="dropdown-item" href="#">Crea nuovi tags</a>
-                    </div>
-                </div> --}}
-
                 @endauth
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

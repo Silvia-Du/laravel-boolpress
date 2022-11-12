@@ -1,13 +1,6 @@
 <template>
   <div>
 
-
-aaaaaaaaaaaaaaaaaaaaaaaaaa
-                <i class="fa-solid fa-arrow-down-1-9"></i>
-                <i class="fa-solid fa-1"></i>
-                <i class="fa-brands fa-github-square"></i>
-eeeeeeeeeeeeeeeeeeeeee
-
     <div v-if="!posts" class="container d-flex justify-content-center align-items-center py-5">
 
         <LoaderComp />
@@ -33,9 +26,11 @@ eeeeeeeeeeeeeeeeeeeeee
 
         <button type="button" class="btn btn-dark"
         @click="getPosts(pagination.current_p -1)" :disabled="pagination.current_p == 1">Back </button>
+
         <button v-for="i in pagination.last_p" :key="`pag${i}`"
         type="button" class="btn btn-dark mr-1"
         @click="getPosts(i)" :disabled="pagination.current_p == i">{{ i }}</button>
+        
         <button type="button" class="btn btn-dark"
         @click="getPosts(pagination.current_p +1)" :disabled="pagination.current_p == pagination.last_p">Next</button>
 
@@ -71,6 +66,7 @@ export default {
 
     methods: {
         getPosts(page){
+            this.posts= null;
             axios.get(this.postApiUrl+"?page="+page)
             .then(response =>{
                 this.posts = response.data.data;

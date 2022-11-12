@@ -49,11 +49,12 @@
         <div class="mb-3">
             <select class="form-select p-2" name="category_id">
                 <option value="">Scegli una categoria</option>
-                @foreach ($categories as $category)
 
-                <option
-                 {{ $category->id == old('category_id', $post->category->id)? 'selected': '' }}
-                value="{{ $category->id }}">{{ $category->name }}</option>
+                @foreach ($categories as $category)
+                    <option
+                        {{ $category->id == old('category_id', $post->category->id)? 'selected': '' }}
+                        value="{{ $category->id }}">{{ $category->name }}
+                    </option>
                 @endforeach
 
             </select>

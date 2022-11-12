@@ -1976,6 +1976,7 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts(page) {
       var _this = this;
 
+      this.posts = null;
       axios.get(this.postApiUrl + "?page=" + page).then(function (response) {
         _this.posts = response.data.data;
         _this.pagination = {
@@ -2081,7 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
     getPostsByType: function getPostsByType(object, data) {
       //reset
       this.type = '';
-      this.typeNme = '';
+      this.typeName = '';
       this.typePosts = null; //valorizzazione
 
       this.type = data;
@@ -2394,13 +2395,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm._v("\n\n\naaaaaaaaaaaaaaaaaaaaaaaaaa\n                "), _c("i", {
-    staticClass: "fa-solid fa-arrow-down-1-9"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "fa-solid fa-1"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "fa-brands fa-github-square"
-  }), _vm._v("\neeeeeeeeeeeeeeeeeeeeee\n\n    "), !_vm.posts ? _c("div", {
+  return _c("div", [!_vm.posts ? _c("div", {
     staticClass: "container d-flex justify-content-center align-items-center py-5"
   }, [_c("LoaderComp")], 1) : _c("div", {
     staticClass: "container main-content py-5 text-center"

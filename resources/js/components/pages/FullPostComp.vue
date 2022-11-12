@@ -117,7 +117,7 @@ export default {
         getPostsByType(object, data){
             //reset
             this.type = '';
-            this.typeNme = '';
+            this.typeName = '';
             this.typePosts= null;
             //valorizzazione
             this.type = data;
